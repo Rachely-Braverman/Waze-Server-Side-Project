@@ -1,14 +1,18 @@
-import mongoose from "mongoose";
+import * as mongoose from "mongoose";
+// import { Erole } from "./enum";
+
+export enum Erole{
+    manager,
+    customer
+}
 
 export const UserSchema = new mongoose.Schema({
-    name: { type: 'string', required: true },
-    age: { type: 'number', required: true }
+
+    role: { type: 'string', enum: Erole ,required: true, default:Erole.customer }
+    
 });
 
 export interface UserDTO {
 
-    id: number;
-    name: string;
-    age: number;
-
+    role: Erole;
 }
