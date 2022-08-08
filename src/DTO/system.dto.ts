@@ -15,8 +15,12 @@ export const SystemSchema = new mongoose.Schema({
 
 export interface SystemDTO {
     // @IsNotEmpty()
-    topic: string
-    objectName: string
-    owner: string
-    description:string
+    // @Length(3)
+    topic: String
+    // @IsNotEmpty()
+    // @Length(3)
+    objectName: String
+    // @IsNotEmpty()
+    owner: String
+    description:String
 }
