@@ -15,4 +15,8 @@ describe('UserService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+  it('get all users should return all users', () => {
+    const result  = service.getAllUsers();
+    expect(typeof result).toEqual(typeof Array);
+  });
 });
