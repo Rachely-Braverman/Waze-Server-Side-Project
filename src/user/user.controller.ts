@@ -12,7 +12,7 @@ export class UserController {
     }
 
     //v
-    @Get(':id')
+    @Get('getUserById/:id')
     getUserById(@Param('id') userId: string) {
         return this.srv.getUserById(userId);
     }

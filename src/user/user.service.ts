@@ -7,7 +7,8 @@ import { UserDTO } from 'src/DTO/user.dto';
 export class UserService {
 
     // users: UserDTO[] = [];
-    constructor(@InjectModel('user') private userModel: Model<UserDTO>, @InjectConnection() private connection: Connection) { }
+    // , @InjectConnection() private connection: Connection
+    constructor(@InjectModel('user') private userModel: Model<UserDTO>) { }
 
     //get
     async getAllUsers() {
