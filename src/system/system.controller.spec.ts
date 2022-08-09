@@ -4,7 +4,7 @@ import { ObjectId } from 'mongodb';
 import { SystemService } from './system.service';
 import { SystemDTO } from '../DTO/system.dto';
 import { Model } from 'mongoose';
-describe('SystemController', () => {
+describe('System', () => {
   let controller: SystemController;
   let service: SystemService;
   beforeEach(() => {
@@ -36,6 +36,7 @@ describe('SystemController', () => {
           __v: 0,
         });
       });
+    });
     describe('service', () => {
       it('getAllSystems should return an array of systems', () => {
         const result = service.getAllSystems();
