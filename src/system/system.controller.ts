@@ -11,9 +11,14 @@ export class SystemController {
         return this.srv.getAllSystems();
     }
 
-    @Get()
-    getSystemById(id:'string'){
+    @Get(':id')
+    getSystemById(@Param('id') id: string){
         return this.srv.getSystemById(id);
+    }
+
+    @Get('getSystemByUrlName/:urlName')
+    getSystemByUrlName(@Param('urlName') urlName: string){
+        return this.srv.getSystemByUrlName(urlName);
     }
 
     @Post()

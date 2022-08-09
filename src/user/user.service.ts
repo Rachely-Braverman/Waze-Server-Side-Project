@@ -12,13 +12,13 @@ export class UserService {
 
     //get
     async getAllUsers() {
-        const users = await this.userModel.find();
+        const users = await this.userModel.find().exec();
         return users;
     }
 
     //get
     async getUserById(userId: string): Promise<UserDTO> {
-        return await this.userModel.findOne({ _id: userId });
+        return await this.userModel.findOne({ _id: userId }).exec();
     }
 
     //add
@@ -35,11 +35,11 @@ export class UserService {
     }
     //put
     async updateUser(userId: string, user: UserDTO) {
-        await this.userModel.findByIdAndUpdate(userId, user);
+        await (await this.userModel.findByIdAndUpdate(userId, user)).save();
     }
     //delete
     async deleteUser(userId: string) {
-        await this.userModel.findByIdAndDelete(userId);
+        await (await this.userModel.findByIdAndDelete(userId)).save();
     }
     
 }

@@ -9,18 +9,25 @@ import { SystemDTO } from 'src/DTO/system.dto';
 export class SystemService {
 
     // users: SystemDTO[] = [];
-    constructor(@InjectModel('system') private SystemModel: Model<SystemDTO>, @InjectConnection() private connection: Connection) { }
+    // , @InjectConnection() private connection: Connection)
+    constructor(@InjectModel('system') private SystemModel: Model<SystemDTO>) { }
 
     //get
     async getAllSystems() {
-        const systems = await this.SystemModel.find();
+        const systems = await this.SystemModel.find().exec();
         return systems;
     }
 
     //get
     async getSystemById(systemId: string) {
         //בעקרון זה עובד גם בלי ההמרה של ה ID
-        return await this.SystemModel.findOne({ _id: new ObjectId(systemId) });
+        return await this.SystemModel.findOne({ _id: new ObjectId(systemId) }).exec();
+    }
+
+    //get
+    async getSystemByUrlName(urlName: string) {
+        //בעקרון זה עובד גם בלי ההמרה של ה ID
+        return await this.SystemModel.findOne({ urlName }).exec();
     }
 
     //add
@@ -38,16 +45,16 @@ export class SystemService {
 
     //post
     async createSystem(system: SystemDTO) {
-        const result = await this.SystemModel.create(system);
+        const result = await (await this.SystemModel.create(system)).save();
         return result;
     }
     //put
     async updateSystem(systemId: string, system: SystemDTO) {
-        await this.SystemModel.findByIdAndUpdate(new ObjectId(systemId), system);
+        await (await this.SystemModel.findByIdAndUpdate(new ObjectId(systemId), system)).save();
     }
     //delete
     async deleteSystem(systemId: string) {
-        await this.SystemModel.findByIdAndDelete(new ObjectId(systemId));
+        await (await this.SystemModel.findByIdAndDelete(new ObjectId(systemId))).save();
     }
 
 }
