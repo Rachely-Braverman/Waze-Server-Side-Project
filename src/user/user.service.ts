@@ -21,16 +21,9 @@ export class UserService {
         return await this.userModel.findOne({ _id: userId }).exec();
     }
 
-    //add
-    async createUser(id: number, name: string, age: number) {
-        const newUser = new this.userModel(
-            {
-                id,
-                name,
-                age,
-            }
-        );
-        const result = await newUser.save();
+    //post
+    async createUser(user: UserDTO) {
+        const result = await (await this.userModel.create(user)).save();
         return result;
     }
     //put

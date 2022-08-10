@@ -12,14 +12,14 @@ export class UserController {
     }
 
     //v
-    @Get('getUserById/:id')
+    @Get(':id')
     getUserById(@Param('id') userId: string) {
         return this.srv.getUserById(userId);
     }
 
     @Post()
-    createUser(@Body('id') id: number, @Body('name') name: string, @Body('age') age: number) {
-        return this.srv.createUser(id, name, age);
+    createUser(@Body()newUser:UserDTO) {
+        return this.srv.createUser(newUser);
     }
 
     //v
