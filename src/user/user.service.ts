@@ -12,34 +12,27 @@ export class UserService {
 
     //get
     async getAllUsers() {
-        const users = await this.userModel.find();
+        const users = await this.userModel.find().exec();
         return users;
     }
 
     //get
     async getUserById(userId: string): Promise<UserDTO> {
-        return await this.userModel.findOne({ _id: userId });
+        return await this.userModel.findOne({ _id: userId }).exec();
     }
 
-    //add
-    async createUser(id: number, name: string, age: number) {
-        const newUser = new this.userModel(
-            {
-                id,
-                name,
-                age,
-            }
-        );
-        const result = await newUser.save();
+    //post
+    async createUser(user: UserDTO) {
+        const result = await (await this.userModel.create(user)).save();
         return result;
     }
     //put
     async updateUser(userId: string, user: UserDTO) {
-        await this.userModel.findByIdAndUpdate(userId, user);
+        await (await this.userModel.findByIdAndUpdate(userId, user)).save();
     }
     //delete
     async deleteUser(userId: string) {
-        await this.userModel.findByIdAndDelete(userId);
+        await (await this.userModel.findByIdAndDelete(userId)).save();
     }
     
 }

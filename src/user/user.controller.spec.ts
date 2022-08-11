@@ -41,6 +41,10 @@ describe('UserController', () => {
         const result = service.getAllUsers();
         expect(typeof result).toEqual(typeof []);
       });
+      it('get user by id should return an object with user', () => {
+        const result = service.getUserById('62f0ec7ecb1d8c6527ef7ef9');
+        expect(typeof result).toEqual(typeof {});
+      });
     });
   });
 });
