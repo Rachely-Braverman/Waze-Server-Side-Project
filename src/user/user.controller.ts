@@ -18,8 +18,8 @@ export class UserController {
     }
 
     @Post()
-    createUser(@Body('id') id: number, @Body('name') name: string, @Body('age') age: number) {
-        return this.srv.createUser(id, name, age);
+    createUser(@Body()newUser:UserDTO) {
+        return this.srv.createUser(newUser);
     }
 
     //v
