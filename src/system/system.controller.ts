@@ -8,6 +8,7 @@ export class SystemController {
 
     @Get()
     getAllSystems(){
+        debugger;
         return this.srv.getAllSystems();
     }
 

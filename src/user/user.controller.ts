@@ -8,6 +8,7 @@ export class UserController {
 
     @Get()
     getAllUsers() {
+        debugger;
         return this.srv.getAllUsers();
     }
 
