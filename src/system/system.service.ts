@@ -48,13 +48,15 @@ export class SystemService {
         const result = await (await this.SystemModel.create(system)).save();
         return result;
     }
+    
     //put
     async updateSystem(systemId: string, system: SystemDTO) {
         await (await this.SystemModel.findByIdAndUpdate(new ObjectId(systemId), system)).save();
     }
+
     //delete
     async deleteSystem(systemId: string) {
-        await (await this.SystemModel.findByIdAndDelete(new ObjectId(systemId))).save();
+        await (await this.SystemModel.findByIdAndDelete(new ObjectId(systemId)));
     }
 
 }
