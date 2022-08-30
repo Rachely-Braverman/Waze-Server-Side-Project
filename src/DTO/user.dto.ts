@@ -1,16 +1,19 @@
 import * as mongoose from "mongoose";
+import { IsEmail, IsEmpty, IsNotEmpty, Length } from 'class-validator';
 
-export enum EnumRole {
+
+export enum Erole {
     manager,
     customer
 }
 
 export const UserSchema = new mongoose.Schema({
 
-    role: { type: 'string', enum: EnumRole, required: true, default: EnumRole.customer }
+    role: { type: 'string', enum: Erole, required: true, default: Erole.customer }
 
 });
 
 export interface UserDTO {
-    role: EnumRole;
+// @IsNotEmpty()
+role: Erole;
 }

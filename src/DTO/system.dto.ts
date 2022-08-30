@@ -1,22 +1,41 @@
+import { IsEmail, IsNotEmpty, IsString, Length } from "class-validator";
 import mongoose from "mongoose";
-import { UserDTO, UserSchema } from "./user.dto";
-// import { IsEmail, IsEmpty, IsNotEmpty, Length } from 'class-validator';
-import { ObjectId } from "mongodb";
-
 
 export const SystemSchema = new mongoose.Schema({
 
-    topic: { type: 'string', required: true },
-    objectName: { type: 'string', required: true },
-    ownerId: { type: mongoose.Schema.Types.ObjectId, required: true },
-    description: { type: 'string', required: false },
-    // communicationDetails: { type: '', required: true },
+    topic: { type: String, required: true },
+    urlName: { type: String, required: true, unique: true },
+    objectName: { type: String, required: true },
+    ownerId: { type: mongoose.Schema.Types.ObjectId, ref:'UserDTO', required: true },
+    description: { type: String, required: true }, 
+    email: { type: String, required: true },
+    phone: { type: String, required: true },
+    
+
 });
 
-export interface SystemDTO {
-    // @IsNotEmpty()
-    topic: String
-    objectName: String
-    ownerId: String
-    description:String
+export class SystemDTO {
+
+    @IsNotEmpty()
+    @Length(2)
+    @IsString()
+    topic: String;
+    @IsNotEmpty()
+    objectName: String;
+    @IsNotEmpty()
+    @IsString()
+    ownerId: String;
+    @IsString()
+    @IsNotEmpty()
+    description:String;
+    @IsNotEmpty()
+    @IsEmail()
+    email:String;
+    @IsNotEmpty()
+    @IsString()
+    @Length(9, 10)
+    phone:String;
+    @IsNotEmpty()
+    @IsString()
+    urlName:String;
 }
