@@ -1,4 +1,4 @@
-import { IsEmail, isNotEmpty, IsNotEmpty, IsNumber, IsString, Length } from "class-validator";
+import { IsEmail, isNotEmpty, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import mongoose from "mongoose";
 
 export const LocationSchema = new mongoose.Schema({
