@@ -52,6 +52,8 @@ export class SystemService {
             console.error();
         }
 
+        const result = await (await this.SystemModel.create(system)).save();
+        return result;
     }
     
     //put
