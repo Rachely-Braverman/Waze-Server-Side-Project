@@ -5,14 +5,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { SystemModule } from './system/system.module';
 import { LocationController } from './location/location.controller';
-import { LocationService } from './location/location.service';
+import { LocationModule } from './location/location.module';
 
 @Module({
-  imports: [UserModule, SystemModule, MongooseModule.forRoot('mongodb://localhost:27017')],
-  controllers: [AppController, LocationController, LocationController],
-  providers: [AppService, LocationService],
+  imports: [UserModule, SystemModule, LocationModule, MongooseModule.forRoot('mongodb://localhost:27017')],
+  controllers: [AppController],
+  providers: [AppService],
 })
 
-export class AppModule {
-
-}
+export class AppModule { }
