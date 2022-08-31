@@ -1,8 +1,7 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsString, Length } from "class-validator";
+import { IsEmail, isNotEmpty, IsNotEmpty, IsNumber, IsString, Length } from "class-validator";
 import mongoose from "mongoose";
 
 export const LocationSchema = new mongoose.Schema({
-    
     // if null its admin location
     manager_id:{ type: String, required: true },
     system_id: { type: String, required: true },
@@ -12,9 +11,9 @@ export const LocationSchema = new mongoose.Schema({
     len:{ type: Number, required: true},
     description:{ type: String, required: true },
     name:{ type: String, required: true },
-    notes:{ type: String, required: true },
-    // (mail & phone) - if different then user details
-    communication_details:{ type: String, required: true }, 
+    notes:{ type: String, required: false },
+    email:{ type: String, required: false },
+    phone:{ type: String, required: true },
 });
 
 export class LocationDTO {
@@ -42,8 +41,10 @@ export class LocationDTO {
     @IsString()
     @IsNotEmpty()
     notes
+    @IsEmail()
+    email
     @IsString()
     @IsNotEmpty()
-    communication_details
+    phone
     
 }
