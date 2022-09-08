@@ -10,5 +10,6 @@ import { ManagerService } from './manager.service';
     ],
     controllers: [ManagerController],
     providers: [ManagerService],
+    exports: [ManagerService],
 })
 export class ManagerModule {}

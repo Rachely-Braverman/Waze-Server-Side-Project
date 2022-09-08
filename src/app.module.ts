@@ -10,6 +10,7 @@ import { RequestModule } from './request/request.module';
 
 @Module({
   imports: [UserModule, SystemModule, MongooseModule.forRoot('mongodb://localhost:27017'), 
+  // , ConfigModule.forRoot()
   ManagerModule, RequestModule, LocationModule],
   controllers: [AppController],
   providers: [AppService],
