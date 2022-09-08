@@ -1,6 +1,7 @@
 # compiled output
 /dist
 /node_modules
+/src/auth/waze-project-9a6cf-firebase-adminsdk-xmgkk-ba5ec60482.json
 
 # Logs
 logs
