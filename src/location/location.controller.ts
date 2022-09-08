@@ -18,7 +18,7 @@ export class LocationController {
     }
 
     @Post()
-    createLocation(@Body()newLocation:LocationDTO) {
+    createLocation(@Body()newLocation:LocationDTO ) {
         return this.srv.createLocation(newLocation);
     }
 

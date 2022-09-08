@@ -10,6 +10,7 @@ export enum eRole {
 
 export const UserSchema = new mongoose.Schema({
 
+    uid: { type: String, required: true},
     role: { type: String, enum:eRole, required: true, default: "customer" },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
@@ -19,6 +20,9 @@ export const UserSchema = new mongoose.Schema({
 });
 
 export class UserDTO {
+    @IsNotEmpty()
+    @IsString()
+    uid:String;
     @IsNotEmpty()
     @IsEnum(eRole)
     role: eRole;
