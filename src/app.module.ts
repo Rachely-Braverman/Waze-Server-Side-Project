@@ -9,6 +9,8 @@ import { ManagerModule } from './manager/manager.module';
 import { RequestModule } from './request/request.module';
 import { NestModule } from '@nestjs/common';
 import { AuthMiddleware } from './auth/auth.middleware';
+import { ConfigModule } from '@nestjs/config';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
@@ -19,6 +21,7 @@ import { AuthMiddleware } from './auth/auth.middleware';
     RequestModule,
     LocationModule
   ],
+  ConfigModule.forRoot({load:[configuration]}),
   controllers: [AppController],
   providers: [AppService],
 })

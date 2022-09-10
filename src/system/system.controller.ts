@@ -1,41 +1,56 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { eRole, ManagerDTO } from 'src/DTO/manager.dto';
 import { SystemDTO } from 'src/DTO/system.dto';
+import { ManagerService } from 'src/manager/manager.service';
 import { SystemService } from './system.service';
+
 
 @Controller('system')
 export class SystemController {
-    constructor(private srv: SystemService) { }
+    constructor(private srv: SystemService, private managerService: ManagerService) { }
 
     @Get()
-    getAllSystems(){
-        debugger;
+    getAllSystems() {
         return this.srv.getAllSystems();
     }
 
     @Get(':id')
-    getSystemById(@Param('id') id: string){
+    getSystemById(@Param('id') id: string) {
         return this.srv.getSystemById(id);
     }
 
     @Get('getSystemByUrlName/:urlName')
-    getSystemByUrlName(@Param('urlName') urlName: string){
+    getSystemByUrlName(@Param('urlName') urlName: string) {
         return this.srv.getSystemByUrlName(urlName);
     }
 
     @Post()
-    createSystem(@Body()newSystem:SystemDTO) {
-        return this.srv.createSystem(newSystem);
+    async createSystem(@Body() newSystem: SystemDTO) {
+        const system = await this.srv.createSystem(newSystem);
+
+        const manager: ManagerDTO = {
+            role: eRole.manager,
+            user_id: system.ownerId,
+            system_id: String(system._id),
+            active: true,
+            display_name: system.topic,
+            //?
+            invitation_sent: false,
+        }
+        await this.managerService.createManager(manager);
+        return system;
     }
 
     //v
     @Put(':id')
-    updateUser(@Param('id') systemId: string, @Body() updateSystem: SystemDTO) {
+    updateSystem(@Param('id') systemId: string, @Body() updateSystem: SystemDTO) {
         this.srv.updateSystem(systemId, updateSystem);
     }
 
     //v
     @Delete(':id')
-    deleteUser(@Param('id') systemId: string) {
+    deleteSystem(@Param('id') systemId: string) {
         this.srv.deleteSystem(systemId);
     }
 }
+
