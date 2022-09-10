@@ -15,7 +15,6 @@ import { AuthMiddleware } from './auth/auth.middleware';
     UserModule,
     SystemModule,
     MongooseModule.forRoot('mongodb://localhost:27017'),
-    // 'mongodb://localhost:27017'
     ManagerModule,
     RequestModule,
     LocationModule
