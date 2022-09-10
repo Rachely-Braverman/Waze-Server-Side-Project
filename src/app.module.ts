@@ -12,9 +12,9 @@ import { AuthMiddleware } from './auth/auth.middleware';
 
 @Module({
   imports: [
+    MongooseModule.forRoot('mongodb+srv://Rachely:Rachely@wazedb.9lfih6q.mongodb.net/waze'),
     UserModule,
     SystemModule,
-    MongooseModule.forRoot('mongodb://localhost:27017'),
     ManagerModule,
     RequestModule,
     LocationModule
