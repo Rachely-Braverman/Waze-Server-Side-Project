@@ -19,9 +19,9 @@ import configuration from './config/configuration';
     SystemModule,
     ManagerModule,
     RequestModule,
-    LocationModule
+    LocationModule,
+    ConfigModule.forRoot({load:[configuration]}),
   ],
-  ConfigModule.forRoot({load:[configuration]}),
   controllers: [AppController],
   providers: [AppService],
 })

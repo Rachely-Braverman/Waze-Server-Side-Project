@@ -18,9 +18,7 @@ const firebaseParams = {
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-
   private defaultApp: any;
-
   constructor() {
     this.defaultApp = firebase.initializeApp({
       credential: firebase.credential.cert(firebaseParams),
