@@ -13,9 +13,15 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 
 @Module({
-  imports: [UserModule, SystemModule, MongooseModule.forRoot('mongodb://localhost:27017'), 
-  , ConfigModule.forRoot({load:[configuration]}),
-  ManagerModule, RequestModule, LocationModule],
+  imports: [
+    MongooseModule.forRoot('mongodb+srv://Rachely:Rachely@wazedb.9lfih6q.mongodb.net/waze'),
+    UserModule,
+    SystemModule,
+    ManagerModule,
+    RequestModule,
+    LocationModule
+  ],
+  ConfigModule.forRoot({load:[configuration]}),
   controllers: [AppController],
   providers: [AppService],
 })

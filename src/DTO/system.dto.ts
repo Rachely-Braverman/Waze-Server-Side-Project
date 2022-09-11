@@ -13,6 +13,7 @@ export const SystemSchema = new mongoose.Schema({
   description: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },
+  logoUrl: { type: String, required: true },
 });
 
 export class SystemDTO {
@@ -38,4 +39,7 @@ export class SystemDTO {
   @IsNotEmpty()
   @IsString()
   urlName: string;
+  @IsNotEmpty()
+  @IsString()
+  logoUrl: string;
 }
