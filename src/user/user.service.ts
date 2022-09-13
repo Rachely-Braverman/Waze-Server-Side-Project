@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { Connection, Model } from 'mongoose'
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose'
 import { UserDTO } from 'src/DTO/user.dto';
 
 @Injectable()
@@ -18,7 +18,11 @@ export class UserService {
 
     //get
     async getUserById(userId: string): Promise<UserDTO> {
-        return await this.userModel.findOne({ _id: userId }).exec();
+        // let u;
+        // return await this.userModel.findOne({ _id: userId }).exec();
+        const u =  await this.userModel.findById({ _id: userId}).exec();
+        console.log(u);
+        return u;
     }
 
     //post
